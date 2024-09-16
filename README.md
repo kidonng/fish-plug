@@ -19,18 +19,18 @@ Minimalistic Git-based fish plugin manager.
 
 ## Installation
 
-1. Run this one-liner:
+1. Add the following to your `~/.config/fish/config.fish`
 
-```fish
-curl -L https://github.com/kidonng/plug.fish/raw/v3/conf.d/plugin_load.fish | plugins=https://github.com/kidonng/plug.fish source
-```
+    ```fish
+    set plugins https://github.com/kidonng/plug.fish
+    source (path filter $__fish_user_data_dir/plugins/plug.fish/conf.d/plugin_load.fish || curl https://raw.githubusercontent.com/kidonng/plug.fish/v3/conf.d/plugin_load.fish | psub)
+    ```
 
-2. Add the following to your `~/.config/fish/config.fish`
+2. Restart fish
 
-```fish
-set plugins https://github.com/kidonng/plug.fish
-source $__fish_user_data_dir/plugins/plug.fish/conf.d/plugin_load.fish
-```
+    ```fish
+    exec fish
+    ```
 
 ## Usage
 
