@@ -17,21 +17,19 @@ for plugin in $plugins
         $plugin_dir/functions \
         $fish_function_path[2..]
 
-    if test -e $plugin_dir
-        for conf in $plugin_dir/conf.d/*.fish
-            # Support masking
-            contains (path basename $conf) $user_conf && continue
+    test -e $plugin_dir || set --local install
 
-            source $conf
-        end
-    else
+    if set --query install
         echo Installing (set_color --bold)$plugin_name(set_color normal)
 
         git clone --quiet --filter blob:none $plugin $plugin_dir
+    end
 
-        for conf in $plugin_dir/conf.d/*.fish
-            source $conf
-            emit (path basename $conf | path change-extension '')_install
-        end
+    for conf in $plugin_dir/conf.d/*.fish
+        # Support masking
+        contains (path basename $conf) $user_conf && continue
+
+        source $conf
+        set --query install && emit (path basename $conf | path change-extension '')_install
     end
 end
