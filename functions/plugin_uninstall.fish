@@ -1,8 +1,7 @@
 function plugin_uninstall
-    set --local plugins_dir $__fish_user_data_dir/plugins
     set --local enabled_plugins (path basename $plugins)
 
-    for plugin_dir in $plugins_dir/*
+    for plugin_dir in $_plugins_dir/*
         set --local plugin_name (path basename $plugin_dir)
         contains $plugin_name $enabled_plugins && continue
 

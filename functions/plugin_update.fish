@@ -1,9 +1,7 @@
 function plugin_update
-    set --local plugins_dir $__fish_user_data_dir/plugins
-
     for plugin in $plugins
         set --local plugin_name (path basename $plugin)
-        set --local plugin_dir $plugins_dir/$plugin_name
+        set --local plugin_dir $_plugins_dir/$plugin_name
 
         if contains $plugin_name $plugins_pinned
             echo Skip updating (set_color --bold)$plugin_name(set_color normal)

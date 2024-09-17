@@ -1,12 +1,12 @@
 test -n "$_plugin_loaded" && exit
 set --global _plugin_loaded yes
 
-set --local plugins_dir $__fish_user_data_dir/plugins
+set --global _plugins_dir $__fish_user_data_dir/plugins
 set --local user_conf (path basename $__fish_config_dir/conf.d/*.fish)
 
 for plugin in $plugins
     set --local plugin_name (path basename $plugin)
-    set --local plugin_dir $plugins_dir/$plugin_name
+    set --local plugin_dir $_plugins_dir/$plugin_name
 
     set fish_complete_path \
         $fish_complete_path[1] \
