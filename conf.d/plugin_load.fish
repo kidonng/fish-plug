@@ -20,9 +20,9 @@ for plugin in $plugins
     if test -e $plugin_dir
         for conf in $plugin_dir/conf.d/*.fish
             # Support masking
-            if ! contains (path basename $conf) $user_conf
-                source $conf
-            end
+            contains (path basename $conf) $user_conf && continue
+
+            source $conf
         end
     else
         echo Installing (set_color --bold)$plugin_name(set_color normal)
