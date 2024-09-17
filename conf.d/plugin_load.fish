@@ -1,4 +1,4 @@
-set -q _plugins_dir && exit
+set --query _plugins_dir && exit
 
 set --global _plugins_dir $__fish_user_data_dir/plugins
 set --local user_conf (path basename $__fish_config_dir/conf.d/*.fish)
